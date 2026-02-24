@@ -1,0 +1,45 @@
+{
+  "name": "finance-manager",
+  "version": "1.0.0",
+  "description": "Finance Expense Manager - Full Stack Application",
+  "private": true,
+  "workspaces": [
+    "frontend"
+  ],
+  "scripts": {
+    "dev": "docker-compose up -d",
+    "dev:build": "docker-compose up --build",
+    "dev:logs": "docker-compose logs -f",
+    "dev:stop": "docker-compose down",
+    "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d",
+    "prod:build": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+    "prod:stop": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml down",
+    "db:migrate": "docker-compose exec backend alembic upgrade head",
+    "db:reset": "docker-compose exec backend alembic downgrade base && docker-compose exec backend alembic upgrade head",
+    "db:studio": "docker-compose exec backend prisma studio",
+    "backend:shell": "docker-compose exec backend /bin/bash",
+    "backend:test": "docker-compose exec backend pytest",
+    "frontend:dev": "cd frontend && npm run dev",
+    "frontend:build": "cd frontend && npm run build",
+    "frontend:preview": "cd frontend && npm run preview",
+    "install:all": "npm install && cd frontend && npm install",
+    "clean": "rm -rf node_modules frontend/node_modules && rm -rf frontend/dist",
+    "lint": "cd frontend && npm run lint",
+    "type-check": "cd frontend && npm run type-check"
+  },
+  "keywords": [
+    "finance",
+    "expense",
+    "manager",
+    "fastapi",
+    "react",
+    "typescript",
+    "postgresql",
+    "docker"
+  ],
+  "author": "",
+  "license": "GPL-2.0",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
