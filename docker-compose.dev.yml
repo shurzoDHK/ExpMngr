@@ -1,0 +1,21 @@
+version: '3.8'
+
+# Development override configuration
+services:
+  backend:
+    build:
+      target: development
+    volumes:
+      - ./backend:/app
+    environment:
+      - DEBUG=true
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    ports:
+      - "5173:5173"
